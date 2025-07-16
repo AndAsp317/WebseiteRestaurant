@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <title>Ristorante Napoli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <div class="nav-container">
+        <h1>Ristorante Napoli</h1>
+        <button class="menu-toggle" id="menuToggle">&#9776;</button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#home">Start</a></li>
+                <li><a href="#menu">Speisekarte</a></li>
+                <li><a href="#hours">Öffnungszeiten</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#reservation">Reservierung</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <section id="home">
+        <h2 class="green-heading">Willkommen in Italien im Ristorante Napoli</h2>
+        <p>Genießen Sie leckere italienische Küche in gemütlicher Atmosphäre.</p>
+    </section>
+
+    <section id="menu">
+    <h2 class="green-heading">Speisekarte</h2>
+    <div class="menu-columns">
+        <div class="menu-category">
+            <h3>Vorspeisen</h3>
+            <ul>
+                <li>Insalata Caprese – 7,00€</li>
+                <li>Bruschetta – 5,50€</li>
+                <li>Knoblauchbrot – 4,00€</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h3>Hauptgerichte</h3>
+            <ul>
+                <li>Pizza Margherita – 8,50€</li>
+                <li>Spaghetti Bolognese – 9,90€</li>
+                <li>Pollo alla Griglia – 12,50€</li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <ul>
+                <li>Tiramisu – 6,00€</li>
+                <li>Gelato Misto – 4,50€</li>
+                <li>Panna Cotta – 5,00€</li>
+            </ul>
+        </div>
+    </div>
+    </section>
+
+    <section id="hours">
+        <h2>Unsere Öffnungszeiten</h2>
+        <p>Di - Fr: 11:00 - 23:00 Uhr</p>
+        <p>Sa - So: 12:00 - 00:00 Uhr</p>
+        <p>Montag Ruhetag</p>
+    </section>
+
+    <section id="contact">
+        <h2 class="green-heading">Kontakt</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="message">Nachricht:</label>
+            <textarea id="message" required></textarea>
+
+            <button type="submit">Absenden</button>
+        </form>
+        <p id="responseMsg"></p>
+    </section>
+
+    <section id="reservation">
+        <h2 class="green-heading">Reservierung</h2>
+        <form id="reservationForm">
+            <label for="resName">Name:</label>
+            <input type="text" id="resName" required>
+
+            <label for="resEmail">E-Mail:</label>
+            <input type="email" id="resEmail" required>
+
+            <label for="resDate">Datum:</label>
+            <input type="date" id="resDate" required>
+
+            <label for="resTime">Uhrzeit:</label>
+            <input type="time" id="resTime" required>
+
+            <label for="resGuests">Anzahl Personen:</label>
+            <input type="number" id="resGuests" min="1" required>
+
+            <button type="submit">Jetzt reservieren</button>
+        </form>
+        <p id="reservationMsg"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ristorante Napoli</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

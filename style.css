@@ -1,0 +1,192 @@
+body {
+    font-family: 'Italianno', cursive;
+    font-size: 28px; /* optional: etwas größer, weil die Schrift fein ist */
+    margin: 0;
+    background-color: #fff8f0;
+    color: #333;
+}
+
+/* Sticky Header */
+header {
+    background-color: #b30000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+}
+
+/* Menü-Button (Burger) */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    display: none; /* Standard: versteckt */
+}
+
+.green-heading {
+    color: #2e8b57;
+    font-family: 'Italianno', cursive;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #b30000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Burger wird sichtbar */
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        display: none; /* zunächst versteckt */
+        background-color: #b30000;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    nav ul.active {
+        display: flex; /* einblenden bei Klick */
+    }
+
+    nav li {
+        padding: 10px 0;
+    }
+}
+
+section {
+    padding: 40px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+
+#reservation form {
+    margin-top: 20px;
+}
+
+#reservation input {
+    max-width: 300px;
+}
+
+#menu ul {
+    list-style-type: none; /* entfernt die Aufzählungspunkte */
+    padding: 0;            /* entfernt Einrückung */
+}
+
+#menu li {
+    margin-bottom: 10px;   /* optional: etwas Abstand zwischen den Gerichten */
+    font-size: 22px;       /* optional: größere Schrift */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+}
+
+button {
+    background-color: #b30000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #800000;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f2f2f2;   
+}
+
+.menu-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.menu-category {
+    flex: 1 1 250px;
+    max-width: 300px;
+}
+
+.menu-category h3 {
+    text-align: center;
+    color: #b30000;
+    border-bottom: 2px solid #b30000;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.menu-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-category li {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+h1, h2, h3 {
+    font-family: 'Italianno', cursive;
+    font-size: 40px;
+}
+
+p {
+    font-size: 25px;
+}
