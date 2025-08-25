@@ -4,7 +4,7 @@ Eine moderne, mehrsprachige Restaurant‑Website mit **Online‑Bestellung**, **
 Technologien: **HTML5 · CSS3 · Vanilla JS**
 
 ### Screenshot (mit Daten)
-![Screenshot mit Daten](./assets/preview.png)
+![Screenshot mit Daten](preview.png)
 
 <sub>_Tipp:_ Lege einen Screenshot unter `assets/screenshot.png` ab (oder passe den Pfad an).</sub>
 
