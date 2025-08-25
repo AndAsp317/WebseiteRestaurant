@@ -267,3 +267,225 @@ input:focus,textarea:focus,select:focus{
 
 /* 11) Selection highlight */
 ::selection{ background: var(--it-green); color:#fff; }
+
+
+/* === Force NAV menu links to Italian green === */
+.nav a, .nav a:visited{
+  color: var(--it-green) !important;
+}
+.nav a:hover, .nav a:focus{
+  color: var(--it-green) !important;
+}
+
+
+/* === Scope Tricolore to NAV only (resets) === */
+/* Remove header tricolore bar */
+.header{ padding-top: 0 !important; }
+.header::before{ display:none !important; }
+/* Reset brand title (no tricolore here) */
+.brand__title span{
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: var(--primary) !important;
+}
+/* Remove section title tricolore bar */
+.section__title::after{ display:none !important; }
+/* Remove card top tricolore stripe */
+.card::before{ display:none !important; }
+/* Remove footer tricolore border */
+.footer::before{ display:none !important; }
+/* Reset hero background (remove tricolore overlay) */
+.hero{ background: linear-gradient(180deg, rgba(42,157,143,0.08), transparent 60%) !important; }
+/* Toggle active back to single accent */
+.toggle input:checked + label{
+  background: var(--accent) !important;
+  color:#fff !important;
+  border-color: transparent !important;
+  font-weight:600 !important;
+}
+/* Cart badge back to single accent color */
+.cart-count{
+  background: var(--accent) !important;
+  color:#fff !important;
+}
+/* Reset selection highlight */
+::selection{ background: initial; color: initial; }
+/* Keep NAV underline in tricolore */
+.nav a::after{ background: linear-gradient(90deg, var(--it-green, #009246), var(--it-white, #ffffff), var(--it-red, #CE2B37)) !important; }
+
+
+/* === NAV: Permanent tricolore underline + contrast tweaks === */
+.nav a{
+  font-weight:600; /* slightly bolder for readability */
+}
+.nav a::after{
+  transform: scaleX(1) !important; /* always visible */
+  opacity: 1;
+  height: 4px; /* a bit thicker for contrast */
+  bottom: .25rem;
+}
+.nav a:hover::after{
+  filter: saturate(110%) contrast(110%);
+}
+
+
+/* === Scope tricolore underline strictly to MAIN NAV === */
+.header #mainNav a{
+  position:relative;
+  font-weight:600;
+  text-decoration:none;
+}
+.header #mainNav a::after{
+  content:"";
+  position:absolute;
+  left:.6rem; right:.6rem; bottom:.25rem;
+  height:4px;
+  border-radius:8px;
+  background: linear-gradient(90deg, var(--it-green, #009246), var(--it-white, #ffffff), var(--it-red, #CE2B37));
+  transform: scaleX(1); /* permanent */
+  transform-origin: left;
+  opacity:1;
+}
+
+/* === Disable any decorative underline outside the main nav === */
+#menu a::after,
+#delivery a::after,
+.order-summary a::after,
+.menu-card a::after,
+.card a::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* === FULL Tricolore underline across site + Brand gradient === */
+
+/* Ensure variables */
+:root{
+  --it-green:#009246;
+  --it-white:#ffffff;
+  --it-red:#CE2B37;
+  --tricolore: linear-gradient(90deg, var(--it-green), var(--it-white), var(--it-red));
+}
+
+/* Brand: "Ristorante Napoli" in tricolore gradient */
+.brand__title{
+  background: var(--tricolore) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  font-weight: 800;
+}
+
+/* MAIN NAV: permanent tricolore underline (all languages) */
+.nav a{
+  position: relative;
+  font-weight: 600;
+  text-decoration: none;
+}
+.nav a::after,
+#mainNav a::after{
+  content: "";
+  position: absolute;
+  left: .6rem; right: .6rem; bottom: .25rem;
+  height: 4px;
+  border-radius: 8px;
+  background: var(--tricolore);
+  transform: scaleX(1);
+  transform-origin: left;
+  opacity: 1;
+}
+
+/* Section titles: tricolore accent line */
+.section__title{
+  position: relative;
+  padding-bottom: .4rem;
+}
+.section__title::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100px; height: 4px;
+  border-radius: 999px;
+  background: var(--tricolore);
+  display: block !important;
+}
+
+/* Menu item titles: tricolore underline */
+.menu-card h3{
+  position: relative;
+  padding-bottom: .25rem;
+}
+.menu-card h3::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 72px; height: 3px;
+  border-radius: 999px;
+  background: var(--tricolore);
+  display: block !important;
+}
+
+/* Delivery / Order headings: tricolore underline */
+#delivery .card__title,
+.order-summary .card__title{
+  position: relative;
+  padding-bottom: .25rem;
+}
+#delivery .card__title::after,
+.order-summary .card__title::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 84px; height: 3px;
+  border-radius: 999px;
+  background: var(--tricolore);
+  display: block !important;
+}
+
+/* Footer top border in tricolore */
+.footer::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background: var(--tricolore);
+  display:block !important;
+}
+.footer{ position:relative; border-top:none; }
+
+
+/* === Fix: ensure tricolore underline appears in MAIN NAV for all languages === */
+:root{
+  --it-green:#009246;
+  --it-white:#ffffff;
+  --it-red:#CE2B37;
+}
+.header .nav a{
+  position: relative !important;
+}
+.header .nav a::after{
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: .6rem !important;
+  right: .6rem !important;
+  bottom: .22rem !important;
+  height: 4px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(90deg, var(--it-green), var(--it-white), var(--it-red)) !important;
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+/* Brand text in tricolore gradient (navigation logo) */
+.brand__title{
+  background: linear-gradient(90deg, var(--it-green), var(--it-white), var(--it-red)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  font-weight: 800;
+}
