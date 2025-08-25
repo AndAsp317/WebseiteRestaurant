@@ -1,115 +1,276 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
-    <title>Ristorante Napoli</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ristorante Napoli – Authentische italienische Küche & Lieferservice</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Ristorante Napoli: Frische Pizza, Pasta & Antipasti. Reservieren Sie online oder bestellen Sie bequem nach Hause (Lieferung & Abholung). Deutsch · English · Italiano." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ristorante Napoli – Italienische Küche & Lieferservice" />
+  <meta property="og:description" content="Reservieren oder bestellen: Lieferung & Abholung. Deutsch · English · Italiano." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Ristorante Napoli",
+    "servesCuisine": "Italian",
+    "priceRange": "€€",
+    "acceptsReservations": "True",
+    "hasDelivery": "True",
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],"opens":"11:00","closes":"23:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"12:00","closes":"00:00"}
+    ]
+  }
+  </script>
 </head>
 <body>
-    <header>
-    <div class="nav-container">
-        <h1>Ristorante Napoli</h1>
-        <button class="menu-toggle" id="menuToggle">&#9776;</button>
-        <nav id="mainNav">
-            <ul>
-                <li><a href="#home">Start</a></li>
-                <li><a href="#menu">Speisekarte</a></li>
-                <li><a href="#hours">Öffnungszeiten</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#reservation">Reservierung</a></li>
-            </ul>
-        </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🍝</div>
+        <a href="#home" class="brand__title">Ristorante <span>Napoli</span></a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">☰</button>
+
+      <nav id="mainNav" class="nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" data-i18n="nav.home">Start</a></li>
+          <li><a href="#menu" data-i18n="nav.menu">Speisekarte</a></li>
+          <li><a href="#delivery" data-i18n="nav.delivery">Lieferservice</a></li>
+          <li><a href="#hours" data-i18n="nav.hours">Öffnungszeiten</a></li>
+          <li><a href="#reservation" data-i18n="nav.reservation">Reservierung</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div class="lang-switch">
+        <label for="langSelect" class="sr-only">Language</label>
+        <select id="langSelect" aria-label="Language">
+          <option value="de">DE</option>
+          <option value="en">EN</option>
+          <option value="it">IT</option>
+        </select>
+      </div>
+
+      <button class="cart-btn" id="openCart" aria-haspopup="dialog" aria-controls="cartDrawer">
+        🧺 <span data-i18n="cart.title_short">Warenkorb</span> <span class="cart-count" id="cartCount">0</span>
+      </button>
     </div>
-</header>
+  </header>
 
-
-    <section id="home">
-        <h2 class="green-heading">Willkommen in Italien im Ristorante Napoli</h2>
-        <p>Genießen Sie leckere italienische Küche in gemütlicher Atmosphäre.</p>
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero__inner">
+        <h1 class="hero__title"><span data-i18n="hero.headline1">Benvenuti</span> <span data-i18n="hero.headline2">– willkommen im</span> <span class="script">Ristorante Napoli</span></h1>
+        <p class="hero__subtitle" data-i18n="hero.sub">Frische Pizza, Pasta & Antipasti – authentisch italienisch. Reservieren oder direkt online bestellen.</p>
+        <div class="hero__cta">
+          <a href="#menu" class="btn btn--primary" data-i18n="cta.view_menu">Speisekarte ansehen</a>
+          <a href="#delivery" class="btn btn--ghost" data-i18n="cta.order_now">Jetzt bestellen</a>
+        </div>
+      </div>
     </section>
 
-    <section id="menu">
-    <h2 class="green-heading">Speisekarte</h2>
-    <div class="menu-columns">
-        <div class="menu-category">
-            <h3>Vorspeisen</h3>
-            <ul>
-                <li>Insalata Caprese – 7,00€</li>
-                <li>Bruschetta – 5,50€</li>
-                <li>Knoblauchbrot – 4,00€</li>
-            </ul>
-        </div>
+    <!-- Menu -->
+    <section id="menu" class="section">
+      <div class="container">
+        <h2 class="section__title" data-i18n="menu.title">Speisekarte</h2>
+        <div id="menuGrid" class="grid"></div>
+      </div>
+    </section>
 
-        <div class="menu-category">
-            <h3>Hauptgerichte</h3>
-            <ul>
-                <li>Pizza Margherita – 8,50€</li>
-                <li>Spaghetti Bolognese – 9,90€</li>
-                <li>Pollo alla Griglia – 12,50€</li>
+    <!-- Delivery -->
+    <section id="delivery" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title" data-i18n="delivery.title">Lieferservice</h2>
+        <div class="delivery-grid">
+          <div class="delivery-info card">
+            <ul class="bullets">
+              <li data-i18n="delivery.point1">Lieferung ab 15 € Bestellwert • Liefergebühr 3,50 € • Frei ab 35 €</li>
+              <li data-i18n="delivery.point2">Abholung jederzeit möglich – 10% Rabatt bei Abholung</li>
+              <li data-i18n="delivery.point3">Durchschnittliche Lieferzeit: 30–45 Minuten</li>
             </ul>
-        </div>
 
-        <div class="menu-category">
-            <h3>Desserts</h3>
-            <ul>
-                <li>Tiramisu – 6,00€</li>
-                <li>Gelato Misto – 4,50€</li>
-                <li>Panna Cotta – 5,00€</li>
-            </ul>
+            <div class="toggle">
+              <input type="radio" name="orderType" id="pickup" value="pickup" checked>
+              <label for="pickup" data-i18n="delivery.pickup">Abholung</label>
+              <input type="radio" name="orderType" id="deliveryOpt" value="delivery">
+              <label for="deliveryOpt" data-i18n="delivery.delivery">Lieferung</label>
+            </div>
+
+            <form id="deliveryForm" class="form">
+              <div class="form-row">
+                <label for="customerName" data-i18n="form.name">Name</label>
+                <input id="customerName" required placeholder="Mario Rossi" data-i18n-placeholder="form.name_placeholder" />
+              </div>
+              <div class="form-row">
+                <label for="customerPhone" data-i18n="form.phone">Telefon</label>
+                <input id="customerPhone" type="tel" required placeholder="+49 171 1234567" data-i18n-placeholder="form.phone_placeholder" />
+              </div>
+              <div id="addressFields" class="address-grid hidden" aria-hidden="true">
+                <div class="form-row">
+                  <label for="street" data-i18n="form.street">Straße & Nr.</label>
+                  <input id="street" placeholder="Via Roma 1" data-i18n-placeholder="form.street_placeholder" />
+                </div>
+                <div class="form-row">
+                  <label for="zip" data-i18n="form.zip">PLZ</label>
+                  <input id="zip" inputmode="numeric" placeholder="70173" data-i18n-placeholder="form.zip_placeholder" />
+                </div>
+                <div class="form-row">
+                  <label for="city" data-i18n="form.city">Stadt</label>
+                  <input id="city" placeholder="Stuttgart" data-i18n-placeholder="form.city_placeholder" />
+                </div>
+                <div class="form-row">
+                  <label for="notes" data-i18n="form.notes">Hinweise (Klingel, Etage, Allergien)</label>
+                  <textarea id="notes" rows="2" data-i18n-placeholder="form.notes_placeholder"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="order-summary card">
+            <h3 class="card__title" data-i18n="summary.title">Ihre Bestellung</h3>
+            <div id="cartItems"></div>
+            <div class="summary__line"><span data-i18n="summary.subtotal">Zwischensumme</span><span id="subtotal">€0,00</span></div>
+            <div class="summary__line" id="pickupDiscountRow" hidden><span data-i18n="summary.pickup_discount">Abholrabatt (10%)</span><span id="pickupDiscount">–€0,00</span></div>
+            <div class="summary__line" id="deliveryFeeRow" hidden><span data-i18n="summary.delivery_fee">Liefergebühr</span><span id="deliveryFee">€0,00</span></div>
+            <div class="summary__total"><span data-i18n="summary.total">Gesamt</span><span id="total">€0,00</span></div>
+            <p id="minOrderNote" class="note" data-i18n="summary.min_note">Mindestbestellwert für Lieferung: 15,00 €</p>
+
+            <div class="summary__actions">
+              <button class="btn btn--ghost" id="clearCart" data-i18n="summary.clear">Warenkorb leeren</button>
+              <button class="btn btn--primary" id="placeOrder" data-i18n="summary.place">Bestellung abschicken</button>
+            </div>
+
+            <!-- Optional PayPal Buttons (swap client-id with your own) -->
+            <div id="paypalContainer" class="paypal-container">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Hours -->
+    <section id="hours" class="section">
+      <div class="container">
+        <h2 class="section__title" data-i18n="hours.title">Öffnungszeiten</h2>
+        <ul class="hours">
+          <li><span data-i18n="hours.tue_fri">Di – Fr</span>: 11:00 – 23:00</li>
+          <li><span data-i18n="hours.sat_sun">Sa – So</span>: 12:00 – 00:00</li>
+          <li><span data-i18n="hours.mon">Montag Ruhetag</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Reservation -->
+    <section id="reservation" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title" data-i18n="reservation.title">Reservierung</h2>
+        <form id="reservationForm" class="form">
+          <div class="grid grid--2">
+            <div class="form-row">
+              <label for="resName" data-i18n="form.name">Name</label>
+              <input id="resName" required data-i18n-placeholder="form.name_placeholder" placeholder="Mario Rossi"/>
+            </div>
+            <div class="form-row">
+              <label for="resEmail" data-i18n="form.email">E‑Mail</label>
+              <input id="resEmail" type="email" required placeholder="mario@example.com" data-i18n-placeholder="form.email_placeholder"/>
+            </div>
+            <div class="form-row">
+              <label for="resDate" data-i18n="form.date">Datum</label>
+              <input id="resDate" type="date" required/>
+            </div>
+            <div class="form-row">
+              <label for="resTime" data-i18n="form.time">Uhrzeit</label>
+              <input id="resTime" type="time" required/>
+            </div>
+            <div class="form-row">
+              <label for="resGuests" data-i18n="form.guests">Anzahl Personen</label>
+              <input id="resGuests" type="number" min="1" required/>
+            </div>
+          </div>
+          <button class="btn btn--primary" type="submit" data-i18n="reservation.cta">Jetzt reservieren</button>
+          <p id="reservationMsg" class="success"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section__title" data-i18n="contact.title">Kontakt</h2>
+        <form id="contactForm" class="form">
+          <div class="grid grid--2">
+            <div class="form-row">
+              <label for="name" data-i18n="form.name">Name</label>
+              <input type="text" id="name" required data-i18n-placeholder="form.name_placeholder" placeholder="Mario Rossi">
+            </div>
+            <div class="form-row">
+              <label for="email" data-i18n="form.email">E‑Mail</label>
+              <input type="email" id="email" required data-i18n-placeholder="form.email_placeholder" placeholder="mario@example.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="message" data-i18n="form.message">Nachricht</label>
+            <textarea id="message" rows="4" required data-i18n-placeholder="form.message_placeholder" placeholder="Ihre Nachricht..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" data-i18n="contact.cta">Absenden</button>
+          <p id="responseMsg" class="success" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="contact-extra">
+          <div class="map card">
+            <div class="map__placeholder" data-i18n="contact.map_placeholder">Hier könnte eine Google‑Maps‑Einbettung mit Ihrer Adresse stehen.</div>
+            <!-- Optional: Replace the placeholder above with your Google Maps iframe -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="year"></span> Ristorante Napoli • <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span></p>
     </div>
-    </section>
+  </footer>
 
-    <section id="hours">
-        <h2>Unsere Öffnungszeiten</h2>
-        <p>Di - Fr: 11:00 - 23:00 Uhr</p>
-        <p>Sa - So: 12:00 - 00:00 Uhr</p>
-        <p>Montag Ruhetag</p>
-    </section>
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <h3 id="drawerTitle" data-i18n="cart.title">Ihr Warenkorb</h3>
+        <button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button>
+      </div>
+      <div class="drawer__body">
+        <div id="drawerItems"></div>
+      </div>
+      <div class="drawer__footer">
+        <div class="summary__line"><span data-i18n="summary.subtotal">Zwischensumme</span><span id="drawerSubtotal">€0,00</span></div>
+        <button class="btn btn--primary" id="drawerToDelivery" data-i18n="drawer.to_delivery">Zur Bestellung</button>
+      </div>
+    </div>
+    <div class="drawer__backdrop" id="cartBackdrop"></div>
+  </aside>
 
-    <section id="contact">
-        <h2 class="green-heading">Kontakt</h2>
-        <form id="contactForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-
-            <label for="message">Nachricht:</label>
-            <textarea id="message" required></textarea>
-
-            <button type="submit">Absenden</button>
-        </form>
-        <p id="responseMsg"></p>
-    </section>
-
-    <section id="reservation">
-        <h2 class="green-heading">Reservierung</h2>
-        <form id="reservationForm">
-            <label for="resName">Name:</label>
-            <input type="text" id="resName" required>
-
-            <label for="resEmail">E-Mail:</label>
-            <input type="email" id="resEmail" required>
-
-            <label for="resDate">Datum:</label>
-            <input type="date" id="resDate" required>
-
-            <label for="resTime">Uhrzeit:</label>
-            <input type="time" id="resTime" required>
-
-            <label for="resGuests">Anzahl Personen:</label>
-            <input type="number" id="resGuests" min="1" required>
-
-            <button type="submit">Jetzt reservieren</button>
-        </form>
-        <p id="reservationMsg"></p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Ristorante Napoli</p>
-    </footer>
-
-    <script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

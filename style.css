@@ -1,192 +1,269 @@
-body {
-    font-family: 'Italianno', cursive;
-    font-size: 28px; /* optional: etwas größer, weil die Schrift fein ist */
-    margin: 0;
-    background-color: #fff8f0;
-    color: #333;
+/* === Base === */
+:root{
+  --bg:#ffffff;
+  --text:#1f1f1f;
+  --muted:#6b7280;
+  --primary:#e63946; /* italian red */
+  --primary-700:#c62f3b;
+  --accent:#2a9d8f; /* mediterranean green */
+  --card:#f7f7f8;
+  --border:#e5e7eb;
+  --shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-/* Sticky Header */
-header {
-    background-color: #b30000;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b0c0f;
+    --text:#e5e7eb;
+    --muted:#9aa0a6;
+    --card:#16181d;
+    --border:#2b2f36;
+    --shadow:0 10px 25px rgba(0,0,0,.4);
+  }
 }
 
-/* Navigation Container */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    flex-wrap: wrap;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.55;
+}
+img{max-width:100%;height:auto;display:block}
+.container{width:min(1100px,92%);margin-inline:auto}
+.script{font-family:"Italianno",cursive;font-size:1.2em}
+
+/* Accessibility */
+.skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.5rem .75rem;border-radius:.5rem;z-index:1000}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:saturate(120%) blur(12px);border-bottom:1px solid var(--border)}
+.header__inner{display:flex;align-items:center;gap:1rem;padding:.75rem 0}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand__title{font-weight:700;text-decoration:none;color:var(--text);letter-spacing:.3px}
+.brand__title span{color:var(--primary)}
+.logo{font-size:1.7rem}
+.nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+.nav a{color:var(--text);text-decoration:none;padding:.5rem .6rem;border-radius:.6rem}
+.nav a:hover{background:var(--card)}
+.lang-switch select{padding:.4rem .6rem;border:1px solid var(--border);background:var(--bg);border-radius:.6rem}
+.menu-toggle{display:none;border:1px solid var(--border);background:var(--bg);border-radius:.6rem;padding:.45rem .6rem}
+.cart-btn{border:1px solid var(--border);background:var(--bg);border-radius:.8rem;padding:.45rem .7rem;display:flex;align-items:center;gap:.4rem}
+.cart-count{min-width:1.35rem;height:1.35rem;display:inline-grid;place-items:center;border-radius:999px;background:var(--accent);color:#fff;font-size:.8rem;padding:0 .35rem}
+
+@media (max-width:900px){
+  .menu-toggle{display:inline-block}
+  .nav{position:absolute;inset:60px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);display:none}
+  .nav.open{display:block}
+  .nav ul{flex-direction:column;padding:1rem}
 }
 
-/* Menü-Button (Burger) */
-.menu-toggle {
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    display: none; /* Standard: versteckt */
+/* Hero */
+.hero{padding:5rem 0;background:linear-gradient(180deg, rgba(42,157,143,0.08), transparent 60%)}
+.hero__title{font-size: clamp(2rem, 3.5vw, 3rem);margin:0 0 .5rem}
+.hero__subtitle{color:var(--muted);margin:0 0 1.25rem}
+.hero__cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{--bg:var(--primary);--bg-hover:var(--primary-700);--fg:#fff;border:none;background:var(--bg);color:var(--fg);padding:.7rem 1rem;border-radius:.8rem;cursor:pointer;box-shadow:var(--shadow);font-weight:600}
+.btn--ghost{--bg:transparent;--fg:var(--text);border:1px solid var(--border);box-shadow:none}
+.btn--ghost:hover{background:var(--card)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+
+/* Sections */
+.section{padding:3.5rem 0}
+.section--alt{background:var(--card)}
+.section__title{font-size:1.8rem;margin:0 0 1.2rem}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.grid--2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:900px){.grid,.grid--2{grid-template-columns:1fr}}
+
+/* Cards (menu, delivery info, map) */
+.card{background:var(--bg);border:1px solid var(--border);border-radius:1rem;padding:1rem;box-shadow:var(--shadow)}
+.card__title{margin:.2rem 0 1rem}
+.menu-card h3{margin:.2rem 0 .25rem}
+.menu-card p{margin:0 0 .8rem;color:var(--muted)}
+.menu-card .price{font-weight:700;margin-right:auto}
+.menu-card .actions{display:flex;align-items:center;gap:.5rem}
+
+/* Menu grid */
+#menuGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media (max-width:900px){#menuGrid{grid-template-columns:1fr}}
+
+/* Delivery */
+.delivery-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+@media (max-width:900px){.delivery-grid{grid-template-columns:1fr}}
+.bullets{margin:0 0 1rem 1.1rem}
+.toggle{display:flex;gap:.5rem;align-items:center;margin:.5rem 0 1rem}
+.toggle input{display:none}
+.toggle label{border:1px solid var(--border);padding:.45rem .75rem;border-radius:.8rem;cursor:pointer}
+.toggle input:checked + label{background:var(--accent);color:#fff;border-color:transparent}
+.form{display:block}
+.form-row{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.8rem}
+input,textarea,select{border:1px solid var(--border);background:var(--bg);color:var(--text);padding:.6rem .7rem;border-radius:.6rem}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:2px}
+.address-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.8rem}
+.address-grid.hidden{display:none}
+.note{color:var(--muted);font-size:.92rem;margin:.5rem 0 0}
+
+/* Summary */
+.order-summary .summary__line, .drawer .summary__line{display:flex;justify-content:space-between;align-items:center;margin:.4rem 0}
+.summary__total{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--border);margin-top:.8rem;padding-top:.6rem;font-size:1.15rem;font-weight:700}
+.summary__actions{display:flex;gap:.5rem;margin-top:1rem}
+.paypal-container{margin-top:1rem}
+
+/* Hours */
+.hours{list-style:none;padding:0;margin:0}
+.hours li{padding:.2rem 0}
+
+/* Contact / Map */
+.contact-extra{margin-top:1rem}
+.map__placeholder{padding:2.5rem;border:1px dashed var(--border);border-radius:.8rem;color:var(--muted);text-align:center}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:1rem 0;margin-top:2rem}
+.footer__inner{display:flex;justify-content:center}
+
+/* Drawer */
+.drawer[hidden]{display:none}
+.drawer{position:fixed;inset:0;z-index:200;display:grid;grid-template-columns:1fr}
+.drawer__panel{margin-left:auto;width:min(420px, 92%);height:100%;background:var(--bg);border-left:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.drawer__header{display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid var(--border)}
+.drawer__body{padding:1rem;overflow:auto}
+.drawer__footer{padding:1rem;border-top:1px solid var(--border)}
+.drawer__backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35)}
+
+/* Cart item */
+.cart-item{display:flex;gap:.6rem;align-items:flex-start;border-bottom:1px dashed var(--border);padding:.6rem 0}
+.cart-item:last-child{border-bottom:none}
+.cart-item h4{margin:.1rem 0 .2rem;font-size:1rem}
+.row{display:flex;align-items:center;gap:.4rem}
+.icon-btn{border:1px solid var(--border);background:transparent;border-radius:.6rem;padding:.35rem .5rem;cursor:pointer}
+.qty{display:inline-grid;grid-template-columns:repeat(3,1.6rem);gap:.35rem;align-items:center}
+.qty button{height:1.6rem}
+.line-total{margin-left:auto;font-weight:600}
+.hidden{display:none}
+.success{color:var(--accent);font-weight:600;margin-top:.5rem}
+
+
+/* =====================
+   Italian Tricolore Enhancements
+   ===================== */
+:root{
+  --it-green:#009246;
+  --it-white:#ffffff;
+  --it-red:#CE2B37;
+  --tricolore: linear-gradient(90deg, var(--it-green), var(--it-white), var(--it-red));
+  --tricolore-vertical: linear-gradient(180deg, var(--it-green), var(--it-white), var(--it-red));
+  --tricolore-diagonal: linear-gradient(135deg, var(--it-green), var(--it-white), var(--it-red));
+  --flagbar-h:6px;
 }
 
-.green-heading {
-    color: #2e8b57;
-    font-family: 'Italianno', cursive;
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
+/* 1) Header tricolore bar + brand gradient */
+.header{ padding-top: var(--flagbar-h); }
+.header::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:var(--flagbar-h);
+  background: var(--tricolore);
+}
+.brand__title span{
+  background: var(--tricolore);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
-/* Navigation */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
+/* 2) Nav underline on hover (tricolore) */
+.nav a{ position:relative; }
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:.6rem; right:.6rem; bottom:.2rem;
+  height:3px;
+  background: var(--tricolore);
+  transform: scaleX(0);
+  transform-origin:left;
+  transition: transform .25s ease;
+  border-radius:8px;
+}
+.nav a:hover::after{ transform: scaleX(1); }
+
+/* 3) Section title accent bar */
+.section__title{ position:relative; padding-bottom:.35rem; }
+.section__title::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:84px; height:4px;
+  background: var(--tricolore);
+  border-radius:999px;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: all 0.3s ease;
-    border-radius: 4px;
+/* 4) Cards with subtle tricolore top stripe */
+.card{ position:relative; overflow:hidden; }
+.card::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:4px;
+  background: var(--tricolore);
 }
 
-nav a:hover {
-    background-color: white;
-    color: #b30000;
+/* 5) Hero with very soft tricolore overlay */
+.hero{
+  background:
+    linear-gradient(180deg, rgba(42,157,143,0.08), transparent 60%),
+    linear-gradient(135deg, rgba(0,146,70,.06), rgba(255,255,255,0) 40%, rgba(206,43,55,.06));
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Burger wird sichtbar */
-    }
-
-    nav {
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column;
-        display: none; /* zunächst versteckt */
-        background-color: #b30000;
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    nav ul.active {
-        display: flex; /* einblenden bei Klick */
-    }
-
-    nav li {
-        padding: 10px 0;
-    }
+/* 6) Toggle active labels in tricolore */
+.toggle input:checked + label{
+  background: var(--tricolore);
+  color:#000;
+  border-color: transparent;
+  font-weight:600;
 }
 
-section {
-    padding: 40px;
-    text-align: center;
+/* 7) Badge & focus accents */
+.cart-count{
+  background-image: var(--tricolore-diagonal);
+  color:#fff;
+}
+input:focus,textarea:focus,select:focus{
+  outline:2px solid var(--it-green);
+  outline-offset:2px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 400px;
-    margin: auto;
+/* 8) Footer top border in tricolore */
+.footer{
+  border-top:none;
+  position:relative;
+}
+.footer::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background: var(--tricolore);
 }
 
-#reservation form {
-    margin-top: 20px;
+/* 9) Utility divider (optional) */
+.hr-tricolore{
+  height:4px; border:0; background: var(--tricolore); border-radius:999px;
 }
 
-#reservation input {
-    max-width: 300px;
+/* 10) Buttons: keep primary red, add optional tricolore variant */
+.btn--tricolore{
+  background-image: var(--tricolore);
+  color:#111;
+  border: none;
 }
+.btn--tricolore:hover{ filter: saturate(110%) contrast(105%); }
 
-#menu ul {
-    list-style-type: none; /* entfernt die Aufzählungspunkte */
-    padding: 0;            /* entfernt Einrückung */
-}
-
-#menu li {
-    margin-bottom: 10px;   /* optional: etwas Abstand zwischen den Gerichten */
-    font-size: 22px;       /* optional: größere Schrift */
-}
-
-input, textarea {
-    width: 100%;
-    padding: 8px;
-}
-
-button {
-    background-color: #b30000;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #800000;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f2f2f2;   
-}
-
-.menu-columns {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-}
-
-.menu-category {
-    flex: 1 1 250px;
-    max-width: 300px;
-}
-
-.menu-category h3 {
-    text-align: center;
-    color: #b30000;
-    border-bottom: 2px solid #b30000;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-.menu-category ul {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-category li {
-    margin-bottom: 10px;
-    font-size: 17px;
-}
-
-h1, h2, h3 {
-    font-family: 'Italianno', cursive;
-    font-size: 40px;
-}
-
-p {
-    font-size: 25px;
-}
+/* 11) Selection highlight */
+::selection{ background: var(--it-green); color:#fff; }
